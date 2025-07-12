@@ -415,23 +415,6 @@ iframe {
   </div>
 
 
-    // === Set the exact corruption time ===
-    const corruptionTime = new Date("2025-07-12T11:46:00"); // Change to desired local time
-
-    function corruptPage() {
-      document.getElementById("normalContent").style.display = "none";
-      document.getElementById("corruptContent").style.display = "flex";
-    }
-
-    function checkCorruptionTime() {
-      const now = new Date();
-      if (now >= corruptionTime) {
-        corruptPage();
-        clearInterval(timer);
-      }
-    }
-
-    const timer = setInterval(checkCorruptionTime, 1000);
 
 
 
@@ -446,24 +429,7 @@ iframe {
   </p>
 </footer>
 <script>
-     // === Set the exact corruption time ===
-    const corruptionTime = new Date("2025-07-12T11:53:00"); // Change to desired local time
-
-    function corruptPage() {
-      document.getElementById("normalContent").style.display = "none";
-      document.getElementById("corruptContent").style.display = "flex";
-    }
-
-    function checkCorruptionTime() {
-      const now = new Date();
-      if (now >= corruptionTime) {
-        corruptPage();
-        clearInterval(timer);
-      }
-    }
-
-    const timer = setInterval(checkCorruptionTime, 1000);
-  const targetDate = new Date("August 11, 2025 08:30:00").getTime();
+     
 
 
   setInterval(() => {
