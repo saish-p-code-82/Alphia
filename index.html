@@ -284,7 +284,7 @@ iframe {
 
     .glitch-text::before,
     .glitch-text::after {
-      content: 'ALPHIA IS OVER';
+      content: 'ALPHIA 2K25 — A Successful Conclusion!';
       position: absolute;
       left: 0;
       width: 100%;
@@ -390,19 +390,18 @@ iframe {
       <h3>📘 Event Brochure</h3>
       <p>View our interactive flipbook below or download the PDF.</p>
       <div class="flipbook-wrapper mb-3">
-<iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" src="https://heyzine.com/flip-book/5319110b02.html" style="border: 0px; width: 100%; height: 379px;"></iframe>
-</div>
+<iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" src="https://heyzine.com/flip-book/5319110b02.html" style="border: 0px; width: 100%; height: 400px;"></iframe>
 
      <div class="d-flex justify-content-center gap-3 flex-wrap">
-    <a target="_blank" href="https://drive.google.com/file/d/1kjj7OdnbATm276tkDeaKnHCuimH_8bTO/view?usp=sharing" class="btn btn-custom shadow">
+    <a target="_blank" href="https://drive.google.com/file/d/1MRtpILRoxqvu_5ebujiaMwCZqXQyWf0B/view?usp=drive_link" class="btn btn-custom shadow">
        Download Coloured PDF
     </a>
-    <a target="_blank" href="https://drive.google.com/file/d/1PKdXINCtggvCfiJcCCacdaFMGHw01plw/view?usp=sharing" class="btn btn-outline-dark shadow">
+    <a target="_blank" href="https://drive.google.com/file/d/1yIEyiCI7Mj6tFvwt8ZCoReTK7q41C_-W/view?usp=drive_link" class="btn btn-outline-dark shadow">
        Download Black & White PDF
     </a>
   </div>
     </section>
-
+    
     <section id="registrationSection" class="text-center mb-5">
   <div id="registrationOpen">
     <h3>📝 Register Now</h3>
@@ -417,10 +416,12 @@ iframe {
     <p>Thank you for your interest in ALPHIA 2K25.</p>
   </div>
 </section>
-<div id="corruptContent" style="display: none;">
-    <div class="glitch-text">ALPHIA 2K25 — A Successful Conclusion!</div>
-    <div class="overlay"></div>
-  </div>
+</div>
+<div id="corruptContent" style="display: none; position: relative; overflow: hidden;">
+    <!-- Glitch text -->
+  <div class="glitch-text">ALPHIA 2K25 — A Successful Conclusion!</div>
+  <div class="overlay"></div>
+</div>
   
 
 
@@ -440,7 +441,7 @@ iframe {
      
 <script>
   // === Set exact corruption date/time (LOCAL) ===
-  const corruptionTime = new Date("2025-07-14T14:22:00"); // 15 Aug 2025 at 12:00 AM
+  const corruptionTime = new Date("2025-08-14T00:00:00"); // 15 Aug 2025 at 12:00 AM
 
   function corruptPage() {
     const normal = document.getElementById("normalContent");
@@ -454,7 +455,7 @@ iframe {
       corrupt.style.flexDirection = "column";
       corrupt.style.height = "100vh";
     }
-      //document.body.style.backgroundImage = "none";
+      document.body.style.backgroundImage = "none";
     document.body.style.backgroundColor = "rgba(0, 7, 4, 1)"; // Optional: hard reset background
   }
 
@@ -468,7 +469,7 @@ iframe {
 
   const timer = setInterval(checkCorruptionTime, 1000);
     //registration closed
-    const hideRegistrationTime = new Date("2025-07-14T14:21:00");
+    const hideRegistrationTime = new Date("2025-08-03T00:00:00");
 
   function updateRegistrationStatus() {
     const now = new Date();
