@@ -360,9 +360,14 @@ iframe {
       <h2>🌱 Embrace Innovation • Preserve Nature 🤖</h2>
       <p>Join us for a futuristic journey where sustainability and science merge to inspire!</p>
     </section>
-
+       
         <section id="countdown-section" class="text-center my-5 position-relative overflow-hidden">
   <h3 class="mb-4">⏳ Countdown to ALPHIA 2K25</h3>
+  <div id="corruptContent" style="display: none;">
+  <div class="glitch-text">ALPHIA IS OVER</div>
+  <div class="overlay"></div>
+</div>
+
 
   <!-- Animated falling leaves (nature theme) -->
   <div class="leaf-container">
@@ -371,17 +376,11 @@ iframe {
     <img src="logo.png" class="leaf leaf3" alt="leaf3">
   </div>
 
-  <!-- Countdown clock -->
-  <div id="countdown" class="countdown-box d-inline-flex justify-content-center flex-wrap gap-3 p-3 neon-frame">
-    <div class="time-box pulse"><span id="days">--</span><br>Days</div>
-    <div class="time-box pulse"><span id="hours">--</span><br>Hours</div>
-    <div class="time-box pulse"><span id="minutes">--</span><br>Minutes</div>
-    <div class="time-box pulse"><span id="seconds">--</span><br>Seconds</div>
-  </div>
 
-  <p class="mt-3 text-light">
-    <i class="bi bi-calendar-event-fill"></i> ALPHIA 2K25 happens on <strong>11th August 2025</strong>
-  </p>
+
+<p class="mt-3 text-light">
+  <i class="bi bi-calendar-event-fill"></i> ALPHIA 2K25 happens on <strong>11th August 2025</strong>
+</p>
 </section>
 
     <section class="flipbook-section text-center mb-5">
@@ -430,17 +429,20 @@ iframe {
 </footer>
 <script>
      
-
+<script>
 // Set your target date here
-const targetDate = new Date("2025-09-11T08:30:00").getTime(); // example date
+const targetDate = new Date("2025-08-11T08:30:00").getTime(); // Make sure this is correct
 
 const countdownInterval = setInterval(() => {
   const now = new Date().getTime();
   const distance = targetDate - now;
 
-  if (distance < 0) {
-    clearInterval(countdownInterval); // Stop the countdown
-    document.getElementById("countdown").innerHTML = "<span class='text-success'>🎉 Event Started!</span>";
+  if (distance <= 0) {
+    clearInterval(countdownInterval);
+
+    // Hide countdown, show "ALPHIA IS OVER" glitch message
+    document.getElementById("countdown").style.display = "none";
+    document.getElementById("corruptContent").style.display = "block";
     return;
   }
 
@@ -454,6 +456,7 @@ const countdownInterval = setInterval(() => {
   document.getElementById("minutes").textContent = minutes;
   document.getElementById("seconds").textContent = seconds;
 }, 1000);
+</script>
 
 </script>
 
