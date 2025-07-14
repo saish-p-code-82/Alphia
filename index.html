@@ -346,6 +346,7 @@ iframe {
   </style>
 </head>
 <body>
+<div id="normalContent">
   <header>
     <div class="logo-wrapper position-relative d-inline-block">
       <div class="curtain curtain-left"></div>
@@ -355,7 +356,7 @@ iframe {
     <p><strong>Where <span style="color:#8BC34A;font-weight:bold;font-family:'Orbitron',sans-serif;"><i class="bi bi-tree-fill"></i> Nature</span> <span style="color:#FFFFFF;font-weight:bold">Meets</span> <span style="color:#00BCD4;font-weight:bold;font-family:'Orbitron',sans-serif;"><i class="bi bi-cpu-fill"></i> Technology</span></strong></p>
     <small>Organized by Dnyan Prabodhan Mandir School, Belgaum</small>
   </header>
-<div id="normalContent">
+
   <main class="container my-5">
     <section class="tech-nature mb-5">
       <h2>🌱 Embrace Innovation • Preserve Nature 🤖</h2>
@@ -414,6 +415,7 @@ iframe {
     <div class="glitch-text">ALPHIA IS OVER</div>
     <div class="overlay"></div>
   </div>
+  
 
 
 
@@ -432,7 +434,7 @@ iframe {
      
 <script>
   // === Set exact corruption date/time (LOCAL) ===
-  const corruptionTime = new Date("2025-07-14T13:29:00"); // 15 Aug 2025 at 12:00 AM
+  const corruptionTime = new Date("2025-08-15T00:00:00"); // 15 Aug 2025 at 12:00 AM
 
   function corruptPage() {
     const normal = document.getElementById("normalContent");
@@ -446,7 +448,7 @@ iframe {
       corrupt.style.flexDirection = "column";
       corrupt.style.height = "100vh";
     }
-    document.body.style.backgroundColor = "##06402B"; // Optional: hard reset background
+    document.body.style.backgroundColor = "#000704ff"; // Optional: hard reset background
   }
 
   function checkCorruptionTime() {
