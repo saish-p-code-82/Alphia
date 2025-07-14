@@ -403,16 +403,22 @@ iframe {
   </div>
     </section>
 
-    <section class="text-center mb-5">
-      <h3>📝 Register Now</h3>
-      <p>Be a part of this exciting blend of nature and technology.</p>
-      <a target="_blank" href="form.html" class="btn btn-custom btn-lg">
-  <i class="bi bi-box-arrow-in-right"></i> Go to Registration
-</a>
-    </div>
-    </section>
+    <section id="registrationSection" class="text-center mb-5">
+  <div id="registrationOpen">
+    <h3>📝 Register Now</h3>
+    <p>Be a part of this exciting blend of nature and technology.</p>
+    <a target="_blank" href="form.html" class="btn btn-custom btn-lg">
+      <i class="bi bi-box-arrow-in-right"></i> Go to Registration
+    </a>
+  </div>
+
+  <div id="registrationClosed" style="display: none;">
+    <h3 class="text-danger">🚫 Registration is now closed</h3>
+    <p>Thank you for your interest in ALPHIA 2K25.</p>
+  </div>
+</section>
 <div id="corruptContent" style="display: none;">
-    <div class="glitch-text">ALPHIA IS OVER</div>
+    <div class="glitch-text">ALPHIA 2K25 — A Successful Conclusion!</div>
     <div class="overlay"></div>
   </div>
   
@@ -434,7 +440,7 @@ iframe {
      
 <script>
   // === Set exact corruption date/time (LOCAL) ===
-  const corruptionTime = new Date("2025-07-14T14:00:00"); // 15 Aug 2025 at 12:00 AM
+  const corruptionTime = new Date("2025-07-14T14:22:00"); // 15 Aug 2025 at 12:00 AM
 
   function corruptPage() {
     const normal = document.getElementById("normalContent");
@@ -448,7 +454,8 @@ iframe {
       corrupt.style.flexDirection = "column";
       corrupt.style.height = "100vh";
     }
-    document.body.style.backgroundColor = "#000704ff"; // Optional: hard reset background
+      document.body.style.backgroundImage = "none";
+    document.body.style.backgroundColor = "rgba(0, 7, 4, 1)"; // Optional: hard reset background
   }
 
   function checkCorruptionTime() {
@@ -460,6 +467,23 @@ iframe {
   }
 
   const timer = setInterval(checkCorruptionTime, 1000);
+    //registration closed
+    const hideRegistrationTime = new Date("2025-07-14T14:21:00");
+
+  function updateRegistrationStatus() {
+    const now = new Date();
+    const openBlock = document.getElementById("registrationOpen");
+    const closedBlock = document.getElementById("registrationClosed");
+
+    if (now >= hideRegistrationTime) {
+      if (openBlock) openBlock.style.display = "none";
+      if (closedBlock) closedBlock.style.display = "block";
+    }
+  }
+
+  // Run at load and every second to ensure accuracy
+  updateRegistrationStatus();
+  setInterval(updateRegistrationStatus, 1000);
 
   // Countdown logic
   const targetDate = new Date("2025-08-11T08:30:00").getTime();
