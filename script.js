@@ -68,7 +68,7 @@
       async function fetchLinks() {
           const doc = await db.collection('links').doc('current').get();
           const data = doc.data();
-          document.getElementById('flipbook-link').href = data.flipbook;
+          document.getElementById('flipbook-link').src = data.flipbook;
           document.getElementById('download1').href = data.download1;
           document.getElementById('download2').href = data.download2;
       }
