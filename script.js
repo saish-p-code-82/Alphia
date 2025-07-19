@@ -65,14 +65,19 @@
   updateRegistrationStatus();
   setInterval(updateRegistrationStatus, 1000);
 //dynamic info
-      async function fetchLinks() {
-          const doc = await db.collection('links').doc('current').get();
-          const data = doc.data();
-          document.getElementById('flipbook-link').src = data.flipbook;
-          document.getElementById('download1').href = data.download1;
-          document.getElementById('download2').href = data.download2;
-      }
-      fetchLinks();
+      db.collection('links').doc('current').get().then((doc) => {
+    if (doc.exists) {
+        const data = doc.data();
+        console.log("Fetched data:", data);
+        document.getElementById('flipbook-link').href = data.flipbook;
+        document.getElementById('download1').href = data.download1;
+        document.getElementById('download2').href = data.download2;
+    } else {
+        console.error("No such document!");
+    }
+}).catch((error) => {
+    console.error("Error fetching document:", error);
+});
   // Countdown logic
   
 
