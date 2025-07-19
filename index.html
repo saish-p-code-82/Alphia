@@ -15,11 +15,8 @@
   <title>ALPHIA 2K25 - Where Nature Meets Technology</title>
     <!-- Firebase App SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<!-- Firestore SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script >
-
-  // Your web app's Firebase configuration
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
   const firebaseConfig = {
     apiKey: "AIzaSyDwxfWU3LfFgfsqXvWb5izbNtTppQz6_Lo",
     authDomain: "alphia-2025.firebaseapp.com",
@@ -28,9 +25,21 @@
     messagingSenderId: "682994609182",
     appId: "1:682994609182:web:e15d5868706f5d9ac7120f"
   };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  db.collection('links').doc('current').get().then((doc) => {
+    if (doc.exists) {
+      const data = doc.data();
+      console.log("Fetched Data:", data);
+
+      document.getElementById('flipbook-link').src = data.flipbook;
+      document.getElementById('download1').href = data.download1;
+      document.getElementById('download2').href = data.download2;
+    } else {
+      console.log("Document doesn't exist");
+    }
+  }).catch((err) => console.error("Error:", err));
 </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
