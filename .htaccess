@@ -1,1 +1,30 @@
+# Enable rewrite engine
+RewriteEngine On
 
+# Allow referrers: your website, GitHub Pages project, school site, local dev
+SetEnvIfNoCase Referer "^https?://(www\.)?vskinsaan\.in" allow_ref
+SetEnvIfNoCase Referer "^https?://[a-z0-9.-]+\.github\.io/Alphia" allow_ref
+SetEnvIfNoCase Referer "^https?://(www\.)?dnyanprabodhan\.com/alphia" allow_ref
+SetEnvIfNoCase Referer "^http://(localhost|127\.0\.0\.1)(:[0-9]+)?/siash-p-code-82/Alphia" allow_ref
+
+# --- SCRIPT PROTECTION ---
+
+<Files "script.js">
+    Order Allow,Deny
+    Allow from env=allow_ref
+    Deny from all
+</Files>
+
+# --- IMAGE PROTECTION (.png / .jpg only when referrer is allowed) ---
+
+<FilesMatch "\.(png|jpg)$">
+    Order Allow,Deny
+    Allow from env=allow_ref
+    Deny from all
+</FilesMatch>
+
+# --- DISABLE DIRECTORY LISTING ---
+Options -Indexes
+
+# --- OPTIONAL: CUSTOM 403 ERROR ---
+ErrorDocument 403 "403 Forbidden - You are not allowed to access this file directly."
