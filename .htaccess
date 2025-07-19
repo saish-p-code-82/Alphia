@@ -6,6 +6,7 @@ SetEnvIfNoCase Referer "^https?://(www\.)?vskinsaan\.in" allow_ref
 SetEnvIfNoCase Referer "^https?://[a-z0-9\.-]+\.github\.io/Alphia" allow_ref
 SetEnvIfNoCase Referer "^https?://(www\.)?dnyanprabodhan\.com/alphia" allow_ref
 SetEnvIfNoCase Referer "^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?/siash-p-code-82/Alphia" allow_ref
+SetEnvIfNoCase Referer "^https?://[a-z0-9.-]+\.github\.io" allow_ref
 
 # Block direct access to script.js unless the referrer is allowed
 <Files "script.js">
