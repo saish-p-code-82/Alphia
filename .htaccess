@@ -1,0 +1,28 @@
+# Enable the rewrite engine
+RewriteEngine On
+
+# Allow listed referrers to access script.js, .png, and .jpg
+SetEnvIfNoCase Referer "^https?://(www\.)?vskinsaan\.in" allow_ref
+SetEnvIfNoCase Referer "^https?://[a-z0-9\.-]+\.github\.io/Alphia" allow_ref
+SetEnvIfNoCase Referer "^https?://(www\.)?dnyanprabodhan\.com/alphia" allow_ref
+SetEnvIfNoCase Referer "^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?/siash-p-code-82/Alphia" allow_ref
+
+# Block direct access to script.js unless the referrer is allowed
+<Files "script.js">
+    Order Allow,Deny
+    Allow from env=allow_ref
+    Deny from all
+</Files>
+
+# Block direct access to .png and .jpg unless the referrer is allowed
+<FilesMatch "\.(png|jpg)$">
+    Order Allow,Deny
+    Allow from env=allow_ref
+    Deny from all
+</FilesMatch>
+
+# Block directory listing for all folders
+Options -Indexes
+
+# Optional: Custom 403 error
+ErrorDocument 403 "403 Forbidden - This file cannot be accessed directly."
