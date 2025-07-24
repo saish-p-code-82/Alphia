@@ -1,3 +1,4 @@
+ document.addEventListener('contextmenu', event => event.preventDefault());
 function togglePassword() {
   const passwordInput = document.getElementById('password');
   const toggle = document.querySelector('.toggle-password');
