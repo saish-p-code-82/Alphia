@@ -95,7 +95,7 @@ function togglePassword() {
     toggle.textContent = '👁️';
   }
 }
-
+// demo function
 function validateForm() {
   const userId = document.getElementById('userid').value.trim();
   const password = document.getElementById('password').value;
