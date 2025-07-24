@@ -1,4 +1,29 @@
-    const targetDate = new Date("2025-08-11T08:30:00").getTime();
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDwxfWU3LfFgfsqXvWb5izbNtTppQz6_Lo",
+    authDomain: "alphia-2025.firebaseapp.com",
+    projectId: "alphia-2025",
+    storageBucket: "alphia-2025.firebasestorage.app",
+    messagingSenderId: "682994609182",
+    appId: "1:682994609182:web:e15d5868706f5d9ac7120f"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  db.collection('links').doc('current').get().then((doc) => {
+    if (doc.exists) {
+      const data = doc.data();
+      console.log("Fetched Data:", data);
+
+      document.getElementById('flipbook-link').src = data.flipbook;
+      document.getElementById('download1').href = data.download1;
+      document.getElementById('download2').href = data.download2;
+    } else {
+      console.log("Document doesn't exist");
+    }
+  }).catch((err) => console.error("Error:", err));
+
+const targetDate = new Date("2025-08-11T08:30:00").getTime();
   setInterval(() => {
     const now = new Date().getTime();
     const distance = targetDate - now;
