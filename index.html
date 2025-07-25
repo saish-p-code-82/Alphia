@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,31 @@
     <!-- Firebase App SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDwxfWU3LfFgfsqXvWb5izbNtTppQz6_Lo",
+    authDomain: "alphia-2025.firebaseapp.com",
+    projectId: "alphia-2025",
+    storageBucket: "alphia-2025.firebasestorage.app",
+    messagingSenderId: "682994609182",
+    appId: "1:682994609182:web:e15d5868706f5d9ac7120f"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
+  db.collection('links').doc('current').get().then((doc) => {
+    if (doc.exists) {
+      const data = doc.data();
+      console.log("Fetched Data:", data);
+
+      document.getElementById('flipbook-link').src = data.flipbook;
+      document.getElementById('download1').href = data.download1;
+      document.getElementById('download2').href = data.download2;
+    } else {
+      console.log("Document doesn't exist");
+    }
+  }).catch((err) => console.error("Error:", err));
+</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
@@ -25,7 +50,6 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <script src="firebase-init.js"></script>
 <script src="script.js"></script>
 <div id="normalContent">
   <header>
@@ -77,7 +101,7 @@
     <a id="download1" target="_blank" href="https://drive.google.com/file/d/1MRtpILRoxqvu_5ebujiaMwCZqXQyWf0B/view?usp=drive_link" class="btn btn-custom shadow">
        Download Coloured PDF
     </a>
-    <a id="download2"target="_blank" href="https://drive.google.com/file/d/1yIEyiCI7Mj6tFvwt8ZCoReTK7q41C_-W/view?usp=drive_link" class="btn btn-outline-dark shadow">
+    <a id="download2" target="_blank" href="https://drive.google.com/file/d/1yIEyiCI7Mj6tFvwt8ZCoReTK7q41C_-W/view?usp=drive_link" class="btn btn-outline-dark shadow">
        Download Black & White PDF
     </a>
   </div>
@@ -86,7 +110,7 @@
   <div id="registrationOpen">
     <h3>📝 Register Now</h3>
     <p>Be a part of this exciting blend of nature and technology.</p>
-    <a target="_blank" href="access.html" class="btn btn-custom btn-lg">
+    <a target="_blank" href="login.html" class="btn btn-custom btn-lg">
       <i class="bi bi-box-arrow-in-right"></i> Go to Registration
     </a>
   </div>
@@ -111,7 +135,24 @@
     </a> | Belgaum
   </p>
 </footer>
-    
+    <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Disable Right Click
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Disable DevTools Shortcuts
+  document.addEventListener('keydown', e => {
+    if (
+      e.ctrlKey && ['u', 'U', 's', 'S', 'c', 'C'].includes(e.key) || // Ctrl+U / Ctrl+S / Ctrl+C
+      e.key === 'F12' || // F12
+      (e.ctrlKey && e.shiftKey && ['I', 'i', 'C', 'c', 'J', 'j'].includes(e.key)) // Ctrl+Shift+I/J/C
+    ) {
+      e.preventDefault();
+      alert('DevTools is disabled.');
+    }
+  });
+</script>
+
 </body>
 </html>
