@@ -1,9 +1,6 @@
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  // your countdown logic here
-
-const targetDate = new Date("2025-08-11T08:30:00").getTime();
+document.addEventListener("DOMContentLoaded", function () {
+  // COUNTDOWN
+  const targetDate = new Date("2025-08-11T08:30:00").getTime();
   setInterval(() => {
     const now = new Date().getTime();
     const distance = targetDate - now;
@@ -23,11 +20,9 @@ const targetDate = new Date("2025-08-11T08:30:00").getTime();
     document.getElementById("minutes").textContent = minutes;
     document.getElementById("seconds").textContent = seconds;
   }, 1000);
-  });
-     document.addEventListener('contextmenu', event => event.preventDefault());
- document.addEventListener("DOMContentLoaded", function() {
-  const corruptionTime = new Date("2025-08-14T00:00:00"); // 15 Aug 2025 at 12:00 AM
 
+  // CORRUPTION MODE
+  const corruptionTime = new Date("2025-08-14T00:00:00");
   function corruptPage() {
     const normal = document.getElementById("normalContent");
     const corrupt = document.getElementById("corruptContent");
@@ -40,8 +35,9 @@ const targetDate = new Date("2025-08-11T08:30:00").getTime();
       corrupt.style.flexDirection = "column";
       corrupt.style.height = "100vh";
     }
-      document.body.style.backgroundImage = "none";
-    document.body.style.backgroundColor = "rgba(0, 7, 4, 1)"; // Optional: hard reset background
+
+    document.body.style.backgroundImage = "none";
+    document.body.style.backgroundColor = "rgba(0, 7, 4, 1)";
   }
 
   function checkCorruptionTime() {
@@ -51,11 +47,10 @@ const targetDate = new Date("2025-08-11T08:30:00").getTime();
       clearInterval(timer);
     }
   }
-
   const timer = setInterval(checkCorruptionTime, 1000);
-    //registration closed
-    const hideRegistrationTime = new Date("2025-08-12T00:00:00");
 
+  // REGISTRATION CLOSURE
+  const hideRegistrationTime = new Date("2025-08-12T00:00:00");
   function updateRegistrationStatus() {
     const now = new Date();
     const openBlock = document.getElementById("registrationOpen");
@@ -66,28 +61,26 @@ const targetDate = new Date("2025-08-11T08:30:00").getTime();
       if (closedBlock) closedBlock.style.display = "block";
     }
   }
-
-  // Run at load and every second to ensure accuracy
   updateRegistrationStatus();
   setInterval(updateRegistrationStatus, 1000);
-    });
-//dynamic info
-      db.collection('links').doc('current').get().then((doc) => {
-    if (doc.exists) {
-        const data = doc.data();
-        console.log("Fetched data:", data);
-        document.getElementById('flipbook-link').href = data.flipbook;
-        document.getElementById('download1').href = data.download1;
-        document.getElementById('download2').href = data.download2;
-    } else {
-        console.error("No such document!");
-    }
-}).catch((error) => {
-    console.error("Error fetching document:", error);
-});
-  // Countdown logic
-  
 
+  // FIREBASE LINKS FETCH
+  db.collection('links').doc('current').get().then((doc) => {
+    if (doc.exists) {
+      const data = doc.data();
+      console.log("Fetched data:", data);
+      document.getElementById('flipbook-link').src = data.flipbook;
+      document.getElementById('download1').href = data.download1;
+      document.getElementById('download2').href = data.download2;
+    } else {
+      console.error("No such document!");
+    }
+  }).catch((error) => {
+    console.error("Error fetching document:", error);
+  });
+});
+
+// Outside DOMContentLoaded: utility functions
 function togglePassword() {
   const passwordInput = document.getElementById('password');
   const toggle = document.querySelector('.toggle-password');
@@ -99,7 +92,7 @@ function togglePassword() {
     toggle.textContent = '👁️';
   }
 }
-// demo function
+
 function validateForm() {
   const userId = document.getElementById('userid').value.trim();
   const password = document.getElementById('password').value;
@@ -108,35 +101,26 @@ function validateForm() {
     alert("Please fill in both User ID and Password.");
     return false;
   }
-    if(userId === "dpm" && password === "dpmop")
-    {
-        window.location.href = "form.html";
-    return false;
 
-    }
-    else
-    {
-        alert("Invalid User ID or Password.");
-        return false;
-    }
-  // Optional: Add more custom validation
-  return true; // proceed with form submission
+  if (userId === "dpm" && password === "dpmop") {
+    window.location.href = "form.html";
+    return false;
+  } else {
+    alert("Invalid User ID or Password.");
+    return false;
+  }
 }
 
-  // Disable right-click
-  // Disable Right Click
-  document.addEventListener('contextmenu', e => e.preventDefault());
+// Disable right-click and devtools shortcuts
+document.addEventListener('contextmenu', e => e.preventDefault());
 
-  // Disable DevTools Shortcuts
-  document.addEventListener('keydown', e => {
-    if (
-      e.ctrlKey && ['u', 'U', 's', 'S', 'c', 'C'].includes(e.key) || // Ctrl+U / Ctrl+S / Ctrl+C
-      e.key === 'F12' || // F12
-      (e.ctrlKey && e.shiftKey && ['I', 'i', 'C', 'c', 'J', 'j'].includes(e.key)) // Ctrl+Shift+I/J/C
-    ) {
-      e.preventDefault();
-      alert('DevTools is disabled.');
-    }
-  });
-  });
-
+document.addEventListener('keydown', e => {
+  if (
+    e.ctrlKey && ['u', 'U', 's', 'S', 'c', 'C'].includes(e.key) ||
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['I', 'i', 'C', 'c', 'J', 'j'].includes(e.key))
+  ) {
+    e.preventDefault();
+    alert('DevTools is disabled.');
+  }
+});
