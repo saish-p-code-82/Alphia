@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("countdown").innerHTML = "<span class='text-success'>🎉 Event Started!</span>";
       return;
     }
-
+    console.log("Countdown running...");
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -80,36 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// Outside DOMContentLoaded: utility functions
-function togglePassword() {
-  const passwordInput = document.getElementById('password');
-  const toggle = document.querySelector('.toggle-password');
-  if (passwordInput.type === 'password') {
-    passwordInput.type = 'text';
-    toggle.textContent = '🙈';
-  } else {
-    passwordInput.type = 'password';
-    toggle.textContent = '👁️';
-  }
-}
 
-function validateForm() {
-  const userId = document.getElementById('userid').value.trim();
-  const password = document.getElementById('password').value;
-
-  if (userId === "" || password === "") {
-    alert("Please fill in both User ID and Password.");
-    return false;
-  }
-
-  if (userId === "dpm" && password === "dpmop") {
-    window.location.href = "form.html";
-    return false;
-  } else {
-    alert("Invalid User ID or Password.");
-    return false;
-  }
-}
 
 // Disable right-click and devtools shortcuts
 document.addEventListener('contextmenu', e => e.preventDefault());
