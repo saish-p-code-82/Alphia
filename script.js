@@ -92,6 +92,6 @@ document.addEventListener('keydown', e => {
     (e.ctrlKey && e.shiftKey && ['I', 'i', 'C', 'c', 'J', 'j'].includes(e.key))
   ) {
     e.preventDefault();
-    alert('DevTools is disabled.');
+
   }
 });
