@@ -50,7 +50,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<script src="script.js"></script>
+
 <div id="normalContent">
   <header>
     <div class="logo-wrapper position-relative d-inline-block">
@@ -136,22 +136,7 @@
   </p>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  // Disable Right Click
-  document.addEventListener('contextmenu', e => e.preventDefault());
 
-  // Disable DevTools Shortcuts
-  document.addEventListener('keydown', e => {
-    if (
-      e.ctrlKey && ['u', 'U', 's', 'S', 'c', 'C'].includes(e.key) || // Ctrl+U / Ctrl+S / Ctrl+C
-      e.key === 'F12' || // F12
-      (e.ctrlKey && e.shiftKey && ['I', 'i', 'C', 'c', 'J', 'j'].includes(e.key)) // Ctrl+Shift+I/J/C
-    ) {
-      e.preventDefault();
-      alert('DevTools is disabled.');
-    }
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
