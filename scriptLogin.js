@@ -1,4 +1,5 @@
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
   // Your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyC84DTXsKFOd99YlHrh44w4z5AZBHgbgP8",
@@ -10,38 +11,43 @@ const firebaseConfig = {
   appId: "1:1092964695051:web:57a03a84d97c85479d5b0e"
 };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-  function login(event) {
-    event.preventDefault();
+// Login handler
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    const userId = document.getElementById("userid").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const errorMessage = document.getElementById("error-message");
+  const userIdInput = document.getElementById("userid").value.trim();
+  const passwordInput = document.getElementById("password").value.trim();
+  const statusMsg = document.getElementById("statusMsg");
 
-    // Reference to that specific user in DB
-    const userRef = db.ref("users/" + userId);
+  const dbRef = ref(db);
 
-    userRef.once("value")
-      .then(snapshot => {
-        if (snapshot.exists()) {
-          const storedPassword = snapshot.val().password;
-          if (storedPassword === password) {
-            window.location.href = "form.html";
-          } else {
-            errorMessage.textContent = "Incorrect password.";
-          }
-        } else {
-          errorMessage.textContent = "User ID not found.";
-        }
-      })
-      .catch(error => {
-        console.error("Error reading from Firebase:", error);
-        errorMessage.textContent = "Login error. Please try again.";
-      });
-  }
+  get(child(dbRef, `users`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      const usersArray = snapshot.val();
+
+      // Find user in array
+      const matchedUser = usersArray.find(
+        (user) =>
+          user.userid === userIdInput && user.password === passwordInput
+      );
+
+      if (matchedUser) {
+        window.location.href = "form.html";
+      } else {
+        statusMsg.textContent = "Invalid User ID or Password.";
+      }
+    } else {
+      statusMsg.textContent = "No users found in database.";
+    }
+  }).catch((error) => {
+    console.error("Firebase error:", error);
+    statusMsg.textContent = "Something went wrong. Try again.";
+  });
+});
   // Disable Right Click
   document.addEventListener('contextmenu', e => e.preventDefault());
 
