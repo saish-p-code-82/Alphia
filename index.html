@@ -126,6 +126,65 @@
   <div class="glitch-text">ALPHIA 2K25 — A Successful Conclusion!</div>
   <div class="overlay"></div>
 </div>
+    <section class="bg-light py-4">
+  <h2 class="text-center mb-4">Our Proud Sponsors</h2>
+
+  <div id="sponsorCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner text-center" id="sponsorCarouselInner">
+      <!-- Slides populated by JS -->
+    </div>
+
+    <!-- Navigation arrows -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#sponsorCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#sponsorCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+
+    <!-- Dots indicators -->
+    <div class="carousel-indicators" id="sponsorCarouselIndicators"></div>
+  </div>
+</section>
+
+<script>
+  const sponsors = [
+    "KLE", "KLS", "DP", "St Pauls", "Sanjay Ghodawat",
+    "Blooming Birds", "Angadi", "Precious Blossom",
+    "Little Scholars", "Jain Heritage", "Herdwarkar", "Bhashini"
+  ];
+
+  const inner = document.getElementById("sponsorCarouselInner");
+  const indicators = document.getElementById("sponsorCarouselIndicators");
+
+  const totalSlides = Math.ceil(sponsors.length / 3);
+
+  for (let i = 0; i < totalSlides; i++) {
+    // Add slide
+    const slide = document.createElement("div");
+    slide.className = "carousel-item" + (i === 0 ? " active" : "");
+    
+    const group = sponsors.slice(i * 3, i * 3 + 3).map(name => `
+      <div class="col-12 col-md-4 mb-3">
+        <div class="p-3 bg-white rounded shadow-sm">${name}</div>
+      </div>
+    `).join("");
+
+    slide.innerHTML = `<div class="row justify-content-center">${group}</div>`;
+    inner.appendChild(slide);
+
+    // Add indicator
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.setAttribute("data-bs-target", "#sponsorCarousel");
+    dot.setAttribute("data-bs-slide-to", i.toString());
+    if (i === 0) dot.className = "active";
+    indicators.appendChild(dot);
+  }
+</script>
+
   </main>
   <footer>
   <p>
