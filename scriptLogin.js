@@ -60,6 +60,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
       (e.ctrlKey && e.shiftKey && ['I', 'i', 'C', 'c', 'J', 'j'].includes(e.key)) // Ctrl+Shift+I/J/C
     ) {
       e.preventDefault();
-      alert('DevTools is disabled.');
+     
     }
   });
