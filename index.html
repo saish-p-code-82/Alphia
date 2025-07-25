@@ -148,6 +148,34 @@
     <div class="carousel-indicators" id="sponsorCarouselIndicators"></div>
   </div>
 </section>
+<style>
+  .text-carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .text-carousel-track {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scrollText 25s linear infinite;
+  }
+
+  .text-carousel-track span {
+    display: inline-block;
+    margin-right: 4rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  @keyframes scrollText {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+</style>
 
 <script>
   const sponsors = [
