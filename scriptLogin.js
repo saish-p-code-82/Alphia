@@ -13,9 +13,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+const database = getDatabase(app);
 
-// Login handler
+// Login form handler
 document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -23,30 +23,31 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
   const passwordInput = document.getElementById("password").value.trim();
   const statusMsg = document.getElementById("statusMsg");
 
-  const dbRef = ref(db);
+  const dbRef = ref(database);
 
-  get(child(dbRef, `users`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      const usersArray = snapshot.val();
+  get(child(dbRef, "users"))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const usersObj = snapshot.val(); // {0: {...}, 1: {...}, ...}
+        const usersArray = Object.values(usersObj); // Convert to array
 
-      // Find user in array
-      const matchedUser = usersArray.find(
-        (user) =>
+        const matchedUser = usersArray.find(user =>
           user.userid === userIdInput && user.password === passwordInput
-      );
+        );
 
-      if (matchedUser) {
-        window.location.href = "form.html";
+        if (matchedUser) {
+          window.location.href = "form.html";
+        } else {
+          statusMsg.textContent = "Invalid User ID or Password.";
+        }
       } else {
-        statusMsg.textContent = "Invalid User ID or Password.";
+        statusMsg.textContent = "No users found.";
       }
-    } else {
-      statusMsg.textContent = "No users found in database.";
-    }
-  }).catch((error) => {
-    console.error("Firebase error:", error);
-    statusMsg.textContent = "Something went wrong. Try again.";
-  });
+    })
+    .catch((error) => {
+      console.error("Database error:", error);
+      statusMsg.textContent = "Error connecting to database.";
+    });
 });
   // Disable Right Click
   document.addEventListener('contextmenu', e => e.preventDefault());
