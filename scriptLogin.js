@@ -1,48 +1,49 @@
- document.addEventListener('contextmenu', event => event.preventDefault());
-function togglePassword() {
-  const passwordInput = document.getElementById('password');
-  const toggle = document.querySelector('.toggle-password');
-  if (passwordInput.type === 'password') {
-    passwordInput.type = 'text';
-    toggle.textContent = '🙈';
-  } else {
-    passwordInput.type = 'password';
-    toggle.textContent = '👁️';
+<!-- Include Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+<script>
+  // Your Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyC84DTXsKFOd99YlHrh44w4z5AZBHgbgP8",
+  authDomain: "alphia-login.firebaseapp.com",
+  databaseURL: "https://alphia-login-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "alphia-login",
+  storageBucket: "alphia-login.firebasestorage.app",
+  messagingSenderId: "1092964695051",
+  appId: "1:1092964695051:web:57a03a84d97c85479d5b0e"
+};
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  function login(event) {
+    event.preventDefault();
+
+    const userId = document.getElementById("userid").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorMessage = document.getElementById("error-message");
+
+    // Reference to that specific user in DB
+    const userRef = db.ref("users/" + userId);
+
+    userRef.once("value")
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          const storedPassword = snapshot.val().password;
+          if (storedPassword === password) {
+            window.location.href = "form.html";
+          } else {
+            errorMessage.textContent = "Incorrect password.";
+          }
+        } else {
+          errorMessage.textContent = "User ID not found.";
+        }
+      })
+      .catch(error => {
+        console.error("Error reading from Firebase:", error);
+        errorMessage.textContent = "Login error. Please try again.";
+      });
   }
-}
-// demo function
-function validateForm() {
-  const userId = document.getElementById('userid').value.trim();
-  const password = document.getElementById('password').value;
-
-  if (userId === "" || password === "") {
-    alert("Please fill in both User ID and Password.");
-    return false;
-  }
-    if(userId === "	ALPHIA2025_01" && password === "KLE@7123")
-    {
-        window.location.href = "form.html";
-    return false;
-   
-}
-
-  // Disable right-click
-  document.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-  });
-
-  // Disable Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+S, F12
-  document.addEventListener('keydown', function (e) {
-    // F12
-    if (e.key === "F12") {
-      e.preventDefault();
-    }
-    // Ctrl+Shift+I or Ctrl+Shift+J or Ctrl+U or Ctrl+S
-    if ((e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
-        (e.ctrlKey && (e.key === 'U' || e.key === 'S'))) {
-      e.preventDefault();
-    }
-  });
-
-
-
+</script>
