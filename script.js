@@ -1,5 +1,7 @@
 
 
+document.addEventListener("DOMContentLoaded", function() {
+  // your countdown logic here
 
 const targetDate = new Date("2025-08-11T08:30:00").getTime();
   setInterval(() => {
@@ -21,8 +23,9 @@ const targetDate = new Date("2025-08-11T08:30:00").getTime();
     document.getElementById("minutes").textContent = minutes;
     document.getElementById("seconds").textContent = seconds;
   }, 1000);
+  });
      document.addEventListener('contextmenu', event => event.preventDefault());
- 
+ document.addEventListener("DOMContentLoaded", function() {
   const corruptionTime = new Date("2025-08-14T00:00:00"); // 15 Aug 2025 at 12:00 AM
 
   function corruptPage() {
@@ -67,6 +70,7 @@ const targetDate = new Date("2025-08-11T08:30:00").getTime();
   // Run at load and every second to ensure accuracy
   updateRegistrationStatus();
   setInterval(updateRegistrationStatus, 1000);
+    });
 //dynamic info
       db.collection('links').doc('current').get().then((doc) => {
     if (doc.exists) {
