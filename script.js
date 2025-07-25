@@ -120,20 +120,19 @@ function validateForm() {
 }
 
   // Disable right-click
-  document.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-  });
+  // Disable Right Click
+  document.addEventListener('contextmenu', e => e.preventDefault());
 
-  // Disable Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+S, F12
-  document.addEventListener('keydown', function (e) {
-    // F12
-    if (e.key === "F12") {
+  // Disable DevTools Shortcuts
+  document.addEventListener('keydown', e => {
+    if (
+      e.ctrlKey && ['u', 'U', 's', 'S', 'c', 'C'].includes(e.key) || // Ctrl+U / Ctrl+S / Ctrl+C
+      e.key === 'F12' || // F12
+      (e.ctrlKey && e.shiftKey && ['I', 'i', 'C', 'c', 'J', 'j'].includes(e.key)) // Ctrl+Shift+I/J/C
+    ) {
       e.preventDefault();
+      alert('DevTools is disabled.');
     }
-    // Ctrl+Shift+I or Ctrl+Shift+J or Ctrl+U or Ctrl+S
-    if ((e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
-        (e.ctrlKey && (e.key === 'U' || e.key === 'S'))) {
-      e.preventDefault();
-    }
+  });
   });
 
