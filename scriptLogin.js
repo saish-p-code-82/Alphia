@@ -1,8 +1,4 @@
-<!-- Include Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
-<script>
   // Your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyC84DTXsKFOd99YlHrh44w4z5AZBHgbgP8",
@@ -46,4 +42,17 @@ const firebaseConfig = {
         errorMessage.textContent = "Login error. Please try again.";
       });
   }
-</script>
+  // Disable Right Click
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Disable DevTools Shortcuts
+  document.addEventListener('keydown', e => {
+    if (
+      e.ctrlKey && ['u', 'U', 's', 'S', 'c', 'C'].includes(e.key) || // Ctrl+U / Ctrl+S / Ctrl+C
+      e.key === 'F12' || // F12
+      (e.ctrlKey && e.shiftKey && ['I', 'i', 'C', 'c', 'J', 'j'].includes(e.key)) // Ctrl+Shift+I/J/C
+    ) {
+      e.preventDefault();
+      alert('DevTools is disabled.');
+    }
+  });
